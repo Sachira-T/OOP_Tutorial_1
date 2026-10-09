@@ -18,6 +18,6 @@ public class APIController {
 
     @GetMapping("/goodbye")
     public String goodbye (){
-        return "ver.  1.0.0" ;
+        return "Get Lost" ;
     }
 }
