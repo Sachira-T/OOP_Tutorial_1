@@ -1,23 +1,27 @@
 package com.example.Tut1;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-
 public class APIController {
     @GetMapping("/home")
-    public String home(){
-        return "Welcome World";
+    public String home() {
+        return "This is tutorial one";
     }
 
-    @GetMapping("/info")
-    public String info (){
-        return "ver.  1.0.0";
+    @GetMapping("/login/{username}")
+    public String login(@PathVariable String username) {
+        if(username.equals("admin")){
+            return "Welcome Admin";
+        }else{
+            return "Get lost.";
+        }
     }
 
-    @GetMapping("/goodbye")
-    public String goodbye (){
-        return "Get Lost" ;
+    @GetMapping("/information")
+    public String information() {
+        return "This is tutorial one";
     }
 }
