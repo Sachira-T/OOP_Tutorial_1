@@ -12,8 +12,9 @@ public class ProductService {
     private Long nextId = 1L;
 
     public ProductService(){
-        products.add(new DigitalProduct(nextId++, "Clean Code (E-book)", 29.99, "/downloads/clean-code.pdf", 4.2));
-        products.add(new PhysicalProduct(nextId++,"27-inch Monitor", 249.99, 5.4, "61cm x 41cm x 18cm"));
+        //id, name and price derives from the superclass Product
+        products.add(new DigitalProduct(1L, "Ebook", 5.99, "file/path/url", 2.5));
+        products.add(new PhysicalProduct(2L, "Refridgerator", 5099.99, 250.69, "25X25"));
     }
 
     public List<Product> getAllProducts() {
@@ -22,7 +23,6 @@ public class ProductService {
     public Product addProduct(Product product) {
         product.setId(nextId++);
         return product;
-
     }
 
     public Optional<Product> getProductById(Long Id) {
@@ -35,5 +35,12 @@ public class ProductService {
 
     public List<Product> findByName(String name) {
         return products.stream().filter(p -> p.getName().contains(name)).toList();
+    }
+    public List<String> getAllSummaries() {
+        List<String> summaries = new ArrayList<>();
+        for (Product p : products) {
+            summaries.add(p.getSummary());
+        }
+        return summaries;
     }
 }

@@ -1,23 +1,38 @@
 package com.example.Tut1;
 
-public class DigitalProduct extends Product {
+public class DigitalProduct extends Product implements Discountable{
+    private String downloadURL;
+    private double fileSize;
+    private double discountedPrice;
 
-    private String downloadUrl;
-    private double fileSizeMB;
+    public DigitalProduct(){}
 
-    public DigitalProduct(Long id, String name, double price, String downloadUrl, double fileSizeMB) {
-        super(id, name, price);
-        this.downloadUrl = downloadUrl;
-        this.fileSizeMB = fileSizeMB;
+    public DigitalProduct(Long id, String name, double Price, String downloadURL, double fileSize){
+        super(id, name, Price);
+        this.downloadURL = downloadURL;
+        this.fileSize = fileSize;
     }
 
-    public String getDownloadUrl() {
-        return downloadUrl;
+    public String getDownloadURL() {
+        return downloadURL;
     }
 
-    public double getFileSizeMB() {
-        return fileSizeMB;
+    public double getFileSize() {
+        return fileSize;
     }
 
+    @Override
+    public String getSummary() {
+        return "Digital Product ID: %d | Name: %s | Price: %.2f | Download URL: %s | File Size: %.2f".formatted(super.getId(), super.getName(), super.getPrice(), downloadURL, fileSize);
+    }
+
+    @Override
+    public void applyDiscount(double rate) {
+        discountedPrice = getPrice() * (1 - rate);
+    }
+
+    @Override
+    public double getDiscountedPrice() {
+        return discountedPrice;
+    }
 }
-
